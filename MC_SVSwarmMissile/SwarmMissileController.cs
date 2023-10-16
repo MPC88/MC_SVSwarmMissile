@@ -16,7 +16,7 @@ namespace MC_SVSwarmMissile
         private State state = State.WaitMainLaunchComplete;
         private SmallMissileObject[,] smallMissiles;
         private const float animDelay = 3f;
-        private const float interPodDelay = 1f;
+        private const float interPodDelay = 0.25f;
         private float time = 0f;
         private Animator[] animPods = null;
 
@@ -39,6 +39,7 @@ namespace MC_SVSwarmMissile
                         thruster = missileTrans.GetChild(1).gameObject,
                         audio = missileTrans.GetChild(1).GetComponent<AudioSource>()
                     };
+                    smallMissiles[pod, missile].go.tag = "Projectile";
                 }
             }
         }
@@ -52,15 +53,16 @@ namespace MC_SVSwarmMissile
                 case State.WaitMainLaunchComplete:                    
                     if (this.time >= animDelay)
                     {
-                        Debug.Log("1");
-                        // Enable collider and add slight force to door 1 (left)
+                        // Slight force to door 1 (left)
                         Transform door1 = this.transform.GetChild(1);
+                        door1.gameObject.tag = "Communication";
                         door1.GetComponent<Collider>().enabled = true;                        
-                        door1.GetComponent<Rigidbody>().AddForceAtPosition(Quaternion.Euler(0, -90, 0) * door1.forward * 1, door1.position + door1.forward);
-                        // Enable collider and add slight force to door 2 (right)
+                        door1.GetComponent<Rigidbody>().AddForceAtPosition(Quaternion.Euler(0, -90, 0) * door1.forward * 10, door1.position + door1.forward);
+                        // Slight force to door 2 (right)
                         Transform door2 = this.transform.GetChild(2);
+                        door2.gameObject.tag = "Communication";
                         door2.GetComponent<Collider>().enabled = true;
-                        door1.GetComponent<Rigidbody>().AddForceAtPosition(Quaternion.Euler(0, 90, 0) * door2.forward * 1, door2.position + door2.forward);
+                        door1.GetComponent<Rigidbody>().AddForceAtPosition(Quaternion.Euler(0, 90, 0) * door2.forward * 10, door2.position + door2.forward);
                         
                         // Stop main thruster                        
                         this.transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();
@@ -127,8 +129,8 @@ namespace MC_SVSwarmMissile
                         this.animPods[4].enabled = false;
                         this.StartCoroutine(nameof(FirePodMissiles), 4);
 
-                        // Enable empty main body collider
-                        this.transform.GetChild(0).GetComponent<Collider>().enabled = true;
+                        // Enable empty main body and door colliders
+                        this.transform.GetChild(0).GetComponent<Collider>().enabled = true;                                                
                         Component.Destroy(this);
                     }
                     break;

@@ -15,8 +15,7 @@ namespace MC_SVSwarmMissile
         internal static int equipID = 45334;
         internal readonly static float rarityMod = 1.2f;
         internal readonly static float weaponDmgEffect = 3;
-        //internal readonly static float cooldown = 40f;
-        internal readonly static float cooldown = 1f;
+        internal readonly static float cooldown = 10f;
         internal readonly static float baseDmg = 50;
         internal readonly static float baseRadius = 200;
         internal readonly static float baseCritChance = 10;
