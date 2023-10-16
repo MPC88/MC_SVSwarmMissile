@@ -74,7 +74,7 @@ namespace MC_SVSwarmMissile
             {
                 Entity entity = ((!colliders[i].CompareTag("Collider")) ? colliders[i].GetComponent<Entity>() : colliders[i].GetComponent<ColliderControl>().ownerEntity);
 
-                if (entity != owner && owner.ffSys.TargetIsEnemy(entity.ffSys))
+                if (entity && entity != owner && owner.ffSys.TargetIsEnemy(entity.ffSys))
                     targets.Add(entity.transform);
 
                 if (targets.Count == 20)

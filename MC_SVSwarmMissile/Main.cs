@@ -16,8 +16,8 @@ namespace MC_SVSwarmMissile
         internal readonly static float rarityMod = 1.2f;
         internal readonly static float weaponDmgEffect = 3;
         internal readonly static float cooldown = 10f;
-        internal readonly static float baseDmg = 50;
-        internal readonly static float baseRadius = 200;
+        internal readonly static float baseDmg = 100;
+        internal readonly static float baseRadius = 100;
         internal readonly static float baseCritChance = 10;
         internal readonly static float baseCritDamage = 2;
         internal readonly static float projectileSpeed = 100;
